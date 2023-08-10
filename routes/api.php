@@ -24,6 +24,7 @@ Route::controller(UserController::class)->middleware('valData:user')->group(
     function () {
         Route::middleware('auth:sanctum')->group(function () {
             Route::get('users', 'read');
+            Route::get('userprofile', 'profile');
             Route::patch('users/update/{user}', 'update');
             Route::delete('users/delete/{user}', 'delete');
         });
@@ -32,4 +33,5 @@ Route::controller(UserController::class)->middleware('valData:user')->group(
 );
 
 Route::post('auth', [AuthController::class, 'login'])->name('auth');
-Route::get('auth', [AuthController::class, 'logout'])->name('logout');
+Route::get('auth', [AuthController::class, 'hasSession'])->name('hasSession')->middleware('auth');
+Route::delete('auth', [AuthController::class, 'logout'])->name('logout')->middleware('auth:sanctum');

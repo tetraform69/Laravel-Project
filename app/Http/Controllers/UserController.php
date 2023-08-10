@@ -10,18 +10,23 @@ class UserController extends Controller
 {
     public function read(Request $request)
     {
-        if (isset($_GET["id"])){
+        if (isset($_GET["id"])) {
             $data = [
                 'user' => User::find($_GET["id"]),
                 'status' => 'ok'
             ];
-        }else{
+        } else {
             $data = [
                 'users' => User::all(),
                 'status' => 'ok'
             ];
         }
         return response()->json($data);
+    }
+
+    public function profile(Request $request)
+    {
+        return Auth::user();
     }
 
     public function create(Request $request)
@@ -32,6 +37,7 @@ class UserController extends Controller
             'status' => 'ok'
         ];
         return response()->json($res);
+        //return response($user, Response::HTTP_CREATED);
     }
 
     public function update(Request $request, User $user)
