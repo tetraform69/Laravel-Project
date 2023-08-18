@@ -31,7 +31,7 @@ class UserController extends Controller
 
     public function create(Request $request)
     {
-        Auth::login(User::create($request->all()));
+        User::create($request->all());
         $res = [
             'send' => $request->all(),
             'status' => 'ok'

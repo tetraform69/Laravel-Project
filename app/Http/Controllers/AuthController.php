@@ -44,9 +44,4 @@ class AuthController extends Controller
         $cookie = Cookie::forget('cookie_token');
         return "Cierre de sesion ok";
     }
-
-    public function hasSession(Request $request)
-    {
-        return ["message" => "Hay una sesion iniciada"];
-    }
 }

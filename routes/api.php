@@ -33,5 +33,4 @@ Route::controller(UserController::class)->middleware('valData:user')->group(
 );
 
 Route::post('auth', [AuthController::class, 'login'])->name('auth');
-Route::get('auth', [AuthController::class, 'hasSession'])->name('hasSession')->middleware('auth');
-Route::delete('auth', [AuthController::class, 'logout'])->name('logout')->middleware('auth:sanctum');
+Route::get('auth', [AuthController::class, 'logout'])->name('logout')->middleware('auth:sanctum');
