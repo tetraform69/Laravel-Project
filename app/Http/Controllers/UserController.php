@@ -31,6 +31,13 @@ class UserController extends Controller
 
     public function create(Request $request)
     {
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
         User::create($request->all());
         $res = [
             'send' => $request->all(),
@@ -42,6 +49,13 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
         User::findOrFail($user->id)->update($request->all());
         $res = [
             'user' => User::find($user->id),

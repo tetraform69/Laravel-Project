@@ -11,6 +11,12 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
+
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
         $credentials = [
             'email' => $request->email,
             'password' => $request->password,
@@ -41,7 +47,7 @@ class AuthController extends Controller
     {
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        $cookie = Cookie::forget('cookie_token');
+        Cookie::forget('cookie_token');
         return "Cierre de sesion ok";
     }
 }
